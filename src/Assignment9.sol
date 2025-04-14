@@ -20,6 +20,11 @@ contract Assignment9 is Ownable {
         // Push the new deployed instance address to deployedContracts array
         deployedContracts.push(address(newContract));
     }
+
+    // Function to get total contracts deployed (optional)
+    function getContractsCount() external view returns (uint256) {
+        return deployedContracts.length;
+    }
 }
 
 // Simple contract to be deployed by the factory
