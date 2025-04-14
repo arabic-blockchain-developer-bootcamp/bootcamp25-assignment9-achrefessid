@@ -1,29 +1,27 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+// import Openzeppelin Ownable contract
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// Inherit from Ownable contract
+// inherit from Ownable contract 
 contract Assignment9 is Ownable {
-    // Create a public array called `deployedContracts` to store contract addresses
+    // create a public array called `deployedContracts` to store contracts addresses in it 
     address[] public deployedContracts;
 
-    // Constructor that calls Ownable's constructor (optional, inherited by default)
+    // call Ownable constructor of openzeppelin contract
     constructor() Ownable() {}
 
+
     // @dev Factory to deploy new instances of `SimpleContract`
-    // Only the owner can call this function
+    // make only the owner is the one who can call this function
     function createContract() external onlyOwner {
-        // Deploy new instance of SimpleContract with any initial value
-        SimpleContract newContract = new SimpleContract(123); // arbitrary initial value
+        // deploy new instance of SimpleContract
+            // Hint: When you create a new instance, do not forget to pass any arbitrary initial value in the constructor
+        SimpleContract simple = new SimpleContract(100);
 
-        // Push the new deployed instance address to deployedContracts array
-        deployedContracts.push(address(newContract));
-    }
-
-    // Function to get total contracts deployed (optional)
-    function getContractsCount() external view returns (uint256) {
-        return deployedContracts.length;
+        // push the new deployed instance to deployedContracts array
+        deployedContracts.push(address(simple));
     }
 }
 
@@ -39,4 +37,3 @@ contract SimpleContract {
         value = newValue;
     }
 }
-
